@@ -32,7 +32,7 @@ class Task(db.Model):
     description = db.Column(db.String(200), nullable=False)
     """:type : str"""
     
-    status = db.Column(db.String(20), default="A fazer")
+    status = db.Column(db.String(20), default="Disponível")
     """:type : str"""
 
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
@@ -114,7 +114,7 @@ def update(id):
 def start(id):
     """start route"""
     task = Task.query.get_or_404(id)
-    task.status = "Doing"
+    task.status = "Emprestado"
     task.date_doing = datetime.now()
     try:
         db.session.commit()
@@ -126,7 +126,7 @@ def start(id):
 def done(id):
     """start route"""
     task = Task.query.get_or_404(id)
-    task.status = "Done"
+    task.status = "Disponível"
     task.date_done = datetime.now()
     time = task.date_done - task.date_doing
     

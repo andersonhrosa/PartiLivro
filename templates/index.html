@@ -2,23 +2,23 @@
 
 {% block html_attribs %} lang="pt-BR" {% endblock %}
 
-{% block title %}Task Manager{% endblock %}
+{% block title %}Partilivro{% endblock %}
 
 {% block content %}
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/styles.css') }}">
 <div class="container">
    <div class="page-header">
-      <h1 class="text-center text-primary">Tarefas</h1>
+      <h1 class="text-center text-primary">Partilivro</h1>
    </div>
-   {% if tasks|length < 1 %} <h4 class="text-center text-warning">Não há tarefas. Crie uma abaixo!</h4>
+   {% if tasks|length < 1 %} <h4 class="text-center text-warning">Não há livros cadastrados, cadastre abaixo!</h4>
       {% else %}
       <table class="table table-striped">
          <thead>
             <tr>
-               <th>Nome da Tarefa</th>
+               <th>Nome do Exemplar</th>
                <th>Categoria</th>
-               <th>Data de Criação</th>
-               <th>Tempo estimado</th>
+               <th>Data de Cadastro</th>
+               <th>Data de devolução</th>
                <th>Tempo gasto</th>
                <th>Status</th>
                <th>Ações</th>
@@ -34,10 +34,10 @@
                <td class="align-middle">{{ task.time_spend }}</td>
                <td class="align-middle">{{ task.status }}</td>
                <td class="align-middle actions">
-                  <a class="btn btn-success" href="/start/{{task.id}}">Start</a> |
-                  <a class="btn btn-success" href="/update/{{task.id}}">Update</a> |
-                  <a class="btn btn-success" href="/done/{{task.id}}">Done</a> |
-                  <a class="btn btn-danger" href="/delete/{{task.id}}">Delete</a>
+                  <a class="btn btn-success" href="/start/{{task.id}}">Emprestar</a> |
+                  <a class="btn btn-success" href="/update/{{task.id}}">Atualizar</a> |
+                  <a class="btn btn-success" href="/done/{{task.id}}">Devolver</a> |
+                  <a class="btn btn-danger" href="/delete/{{task.id}}">Apagar</a>
                </td>
             </tr>
             {% endfor %}
@@ -47,19 +47,22 @@
 
       <form class="form-inline" action="/" method="POST">
          <div>
-            <label for="description">Adicionar Nova Tarefa<br></label>
+            <label for="description">Adicionar Novo Exemplar<br></label>
          </div>
          <div class="form-group">
-            <label for="description">Nome da Tarefa: </label>
+            <label for="description">Nome do Livro: </label>
             <input type="text" class="form-control" name="description" id="description">
-            <label for="description">Tempo Estimado: </label>
+            <label for="description">Data de devolução: </label>
             <input type="text" class="form-control" name="time_estimated" id="time_estimated">
             <label for="description">Categoria: </label>
             <select name="category" id="category" class="form-control" >
-               <option value="Processsamento Paralelo">Processsamento Paralelo</option>
-               <option value="Engenharia de Software">Engenharia de Software</option>
-               <option value="Sistema Distribuido">Sistema Distribuido</option>
-               <option value="Seguranca e Auditoria">Segurança e Auditoria</option>
+               <option value="Romance">Romance</option>
+               <option value="Infantil">Infantil</option>
+               <option value="História">História</option>
+               <option value="Aventura">Aventura</option>
+               <option value="Suspense">Suspense</option>
+               <option value="Drama">Drama</option>
+               <option value="Terror">Terror</option>
             </select>
             <button type="submit" class="btn btn-primary">Add</button>
          </div>
