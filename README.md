@@ -1,5 +1,5 @@
 # PartiLivro
-![Logo PartiLivro](/assets/img/logo.png)
+![Logo PartiLivro](/static/images/logoNew.png)
 
 ## Tabela de Conteúdos
 
